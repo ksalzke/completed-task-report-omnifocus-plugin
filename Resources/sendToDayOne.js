@@ -1,14 +1,3 @@
-/*{
-	"type": "action",
-	"targets": ["omnifocus"],
-	"author": "Kaitlin Salzke",
-	"identifier": "com.KaitlinSalzke.completedTaskReport",
-	"version": "1.0",
-	"description": "Generate report of tasks completed today",
-	"label": "Completed Task Report",
-	"shortLabel": "Completed Task Report"
-}*/
-
 var _ = (function() {
 	var action = new PlugIn.Action(function(selection, sender) {
 		// CONFIGURATION

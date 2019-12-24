@@ -1,6 +1,6 @@
 # About
 
-This is an single-action Omni Automation plug-in for OmniFocus that sends a list of completed tasks to a Day One journal. Further details are provided below.
+This is an Omni Automation plug-in for OmniFocus that sends a list of completed tasks to a Day One journal. Further details are provided below.
 
 _Please note that Omni Automation for OmniFocus is still in development and details are subject to change before it officially ships. If you have questions, please refer to [Omni's Slack #automation channel](https://www.omnigroup.com/slack/)._
 
@@ -18,10 +18,13 @@ Also bear in mind that if a report is run for a date in the past, tasks will onl
 
 (For instructions on getting started with Omni Automation, see [here](https://kaitlinsalzke.com/how-to/how-to-add-a-omnijs-plug-in-to-omnifocus-and-assign-a-keyboard-shortcut/).)
 
-1. Click on the green `Clone or download` button above to download a `.zip` file of the file in this GitHub repository.
+**Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
+
+1. Click on the green `Clone or download` button above to download a `.zip` file of all the files in this GitHub repository.
 2. Unzip the downloaded file.
-3. Move the `.omnijs` file to your OmniFocus plug-in library folder.
-4. Update the CONFIGURATION information in that file.
+3. Open the file located at `Resources/sendToDayOne.js` and make any changes to the configuration needed to reflect your OmniFocus set-up. Further explanations of the options are included within that file as comments.
+4. Rename the entire folder to anything you like, with the extension `.omnifocusjs`
+5. Move the resulting file to your OmniFocus plug-in library folder.
 
 # Actions
 
