@@ -1,6 +1,18 @@
 var _ = (function() {
   var completedReportLib = new PlugIn.Library(new Version("1.0"));
 
+  completedReportLib.functionLibrary = () => {
+    functionLibrary = PlugIn.find("com.KaitlinSalzke.functionLibrary");
+    if (functionLibrary !== null) {
+      return functionLibrary.library("functionLibrary");
+    } else {
+      let alert = new Alert(
+        "Function Library Required",
+        "For this plug-in bundle (Completed Task Report) to work correctly, my Function Library for OmniFocus (https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately. Either you do not currently have this library file installed, or it is not installed correctly.")
+      alert.show()
+    }
+  };
+
   completedReportLib.getTasksCompletedOnDate = date => {
     // function to check if a tag is included in 'excluded tags'
     isHidden = element => {
@@ -50,7 +62,7 @@ var _ = (function() {
     markdown = "# Tasks Completed on " + date.toDateString() + "\n";
     currentFolder = "No Folder";
     tasksCompleted.forEach(function(completedTask) {
-      containingFolder = functionLibrary.getContainingFolder(completedTask)
+      containingFolder = completedReportLib.functionLibrary().getContainingFolder(completedTask)
         .name;
       if (currentFolder !== containingFolder) {
         markdown = markdown.concat("\n**", containingFolder, "** \n");
@@ -70,9 +82,7 @@ var _ = (function() {
   };
 
   completedReportLib.runReport = templateUrl => {
-    functionLibrary = PlugIn.find("com.KaitlinSalzke.functionLibrary").library(
-      "functionLibrary"
-    );
+    functionLibrary = completedReportLib.functionLibrary()
 
     var now = new Date();
     var today = Calendar.current.startOfDay(now);
