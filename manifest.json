@@ -5,5 +5,5 @@
   "description": "Plugin to generate a daily completed task report from OmniFocus",
   "version": "1.0.0",
   "actions": [{ "identifier": "sendToDayOne" }],
-  "libraries": []
+  "libraries": [{ "identifier": "completedReportConfig" }]
 }

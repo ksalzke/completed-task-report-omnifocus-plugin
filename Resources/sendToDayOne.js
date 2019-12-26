@@ -1,10 +1,9 @@
 var _ = (function() {
 	var action = new PlugIn.Action(function(selection, sender) {
 		// CONFIGURATION
-		// ignore tasks with the following tags
-		tagsToExclude = [tagNamed("Activity Type").tagNamed("⏳ Waiting")];
-		// send entry to the following Day One journal
-		dayOneJournalName = "Done Today";
+		config = this.completedReportConfig;
+		tagsToExclude = config.tagsToExclude();
+		dayOneJournalName = config.dayOneJournalName();
 
 		functionLibrary = PlugIn.find("com.KaitlinSalzke.functionLibrary").library(
 			"functionLibrary"
