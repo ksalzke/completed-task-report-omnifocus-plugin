@@ -61,19 +61,15 @@ var _ = (function() {
     return markdown;
   };
 
-  completedReportLib.runReportForDay = date => {
+  completedReportLib.runReportForDay = (date, templateUrl) => {
     let markdown = getMarkdownReport(date);
 
-    let dayOneUrlStr =
-      "dayone://post?entry=" +
-      encodeURIComponent(markdown) +
-      "&journal=" +
-      encodeURIComponent(dayOneJournalName);
+    fullUrl = templateUrl.replace("{{LIST}}", encodeURIComponent(markdown));
 
-    URL.fromString(dayOneUrlStr).call(() => {});
+    URL.fromString(templateUrl).call(() => {});
   };
 
-  completedReportLib.runReport = resultUrl => {
+  completedReportLib.runReport = templateUrl => {
     functionLibrary = PlugIn.find("com.KaitlinSalzke.functionLibrary").library(
       "functionLibrary"
     );
@@ -108,10 +104,10 @@ var _ = (function() {
       console.log(today);
       switch (optionSelected) {
         case "Today":
-          runReportForDay(today);
+          runReportForDay(today, templateUrl);
           break;
         case "Yesterday":
-          runReportForDay(yesterday);
+          runReportForDay(yesterday, templateUrl);
           break;
         case "Other":
           selectOtherDateFormPromise = selectOtherDateForm.show(
@@ -119,7 +115,7 @@ var _ = (function() {
             "Continue"
           );
           selectOtherDateFormPromise.then(function(formObject) {
-            runReportForDay(formObject.values["dateInput"]);
+            runReportForDay(formObject.values["dateInput"], templateUrl);
           });
           selectOtherDateFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
