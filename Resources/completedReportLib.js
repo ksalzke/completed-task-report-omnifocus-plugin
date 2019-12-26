@@ -44,7 +44,7 @@ var _ = (function() {
     return tasksCompleted;
   };
 
-  completedReportLib.runReportForDay = date => {
+  completedReportLib.getMarkdownReport = date => {
     // generate TaskPaper and send to Day One
     tasksCompleted = getTasksCompletedOnDate(date);
     markdown = "# Tasks Completed on " + date.toDateString() + "\n";
@@ -58,8 +58,13 @@ var _ = (function() {
       }
       markdown = markdown.concat(" * ", completedTask.name, "\n");
     });
+    return markdown;
+  };
 
-    var dayOneUrlStr =
+  completedReportLib.runReportForDay = date => {
+    let markdown = getMarkdownReport(date);
+
+    let dayOneUrlStr =
       "dayone://post?entry=" +
       encodeURIComponent(markdown) +
       "&journal=" +
