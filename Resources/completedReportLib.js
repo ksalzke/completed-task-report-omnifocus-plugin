@@ -117,7 +117,9 @@ var _ = (function() {
       }
       // check if project has changed
       if (currentProject !== taskProject) {
-        markdown = markdown.concat("\n_", taskProject, "_   \n");
+        if (config.includeProjectHeadings()) {
+          markdown = markdown.concat("\n_", taskProject, "_   \n");
+        }
         currentProject = taskProject;
       }
       markdown = markdown.concat(" * ", completedTask.name, "\n");
