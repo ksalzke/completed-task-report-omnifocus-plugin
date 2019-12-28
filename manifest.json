@@ -4,7 +4,10 @@
   "author": "Kaitlin Salzke",
   "description": "Plugin to generate a daily completed task report from OmniFocus",
   "version": "1.0.0",
-  "actions": [{ "identifier": "sendToDayOne" }],
+  "actions": [
+    { "identifier": "sendToDayOne" },
+    { "identifier": "sendToDrafts" }
+  ],
   "libraries": [
     { "identifier": "completedReportConfig" },
     { "identifier": "completedReportLib" }
