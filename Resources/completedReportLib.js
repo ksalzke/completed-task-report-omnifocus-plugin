@@ -98,6 +98,7 @@ var _ = (function() {
     tasksCompleted = completedReportLib.getTasksCompletedOnDate(date);
     markdown = "# Tasks Completed on " + date.toDateString() + "\n";
     currentFolder = "No Folder";
+    currentProject = "No Project";
     tasksCompleted.forEach(function(completedTask) {
       containingFolder = completedReportLib
         .functionLibrary()
@@ -107,6 +108,17 @@ var _ = (function() {
           markdown = markdown.concat("\n**", containingFolder, "** \n");
         }
         currentFolder = containingFolder;
+      }
+      // get current project name - if null (in inbox) use "No Project"
+      if (completedTask.containingProject == null) {
+        taskProject = "No Project";
+      } else {
+        taskProject = completedTask.containingProject.name;
+      }
+      // check if project has changed
+      if (currentProject !== taskProject) {
+        markdown = markdown.concat("\n_", taskProject, "_   \n");
+        currentProject = taskProject;
       }
       markdown = markdown.concat(" * ", completedTask.name, "\n");
     });
