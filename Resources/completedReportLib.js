@@ -67,7 +67,21 @@ var _ = (function() {
       if (item instanceof Project && item.task.hasChildren) {
         item.task.apply(tsk => {
           if (completedToday(tsk)) {
-            tasksCompleted.push(tsk);
+            // if has children, only add if all children excluded due to hidden tags
+            if (tsk.hasChildren) {
+              if (
+                tsk.children.every(child => {
+                  return child.tags.some(isHidden);
+                })
+              ) {
+                tasksCompleted.push(tsk);
+              }
+            }
+            // add if has no children
+            else {
+              tasksCompleted.push(tsk);
+            }
+            // skip children if showTopLevelOnly is set to true in config
             if (config.showTopLevelOnly()) {
               return ApplyResult.SkipChildren;
             }
