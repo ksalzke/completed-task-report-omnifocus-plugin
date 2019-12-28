@@ -93,6 +93,7 @@ var _ = (function() {
   };
 
   completedReportLib.getMarkdownReport = date => {
+    config = this.completedReportConfig;
     // generate TaskPaper and send to Day One
     tasksCompleted = completedReportLib.getTasksCompletedOnDate(date);
     markdown = "# Tasks Completed on " + date.toDateString() + "\n";
@@ -102,7 +103,9 @@ var _ = (function() {
         .functionLibrary()
         .getContainingFolder(completedTask).name;
       if (currentFolder !== containingFolder) {
-        markdown = markdown.concat("\n**", containingFolder, "** \n");
+        if (config.includeFolderHeadings()) {
+          markdown = markdown.concat("\n**", containingFolder, "** \n");
+        }
         currentFolder = containingFolder;
       }
       markdown = markdown.concat(" * ", completedTask.name, "\n");

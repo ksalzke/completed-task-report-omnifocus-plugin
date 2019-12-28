@@ -32,6 +32,12 @@ var _ = (function() {
     return true;
   };
 
+  completedReportConfig.includeFolderHeadings = () => {
+    // If this option is set to true, the report will include folder headings
+    // THIS SHOULD BE BOOLEAN (TRUE OR FALSE)
+    return true;
+  };
+
   return completedReportConfig;
 })();
 _;
