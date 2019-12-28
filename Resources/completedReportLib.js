@@ -14,7 +14,7 @@ var _ = (function() {
     }
   };
 
-  completedReportLib.getTasksCompletedOnDate = date => {
+  completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     config = PlugIn.find("com.KaitlinSalzke.completedTaskReport").library(
       "completedReportConfig"
@@ -30,8 +30,8 @@ var _ = (function() {
     completedToday = item => {
       if (
         item.completed &&
-        Calendar.current.startOfDay(item.completionDate).getTime() ==
-          date.getTime() &&
+        item.completionDate > startDate &&
+        item.completionDate < endDate &&
         !item.tags.some(isHidden)
       ) {
         return true;
@@ -92,11 +92,20 @@ var _ = (function() {
     return tasksCompleted;
   };
 
-  completedReportLib.getMarkdownReport = date => {
+  completedReportLib.getMarkdownReport = (startDate, endDate) => {
     config = this.completedReportConfig;
     // generate TaskPaper and send to Day One
-    tasksCompleted = completedReportLib.getTasksCompletedOnDate(date);
-    markdown = "# Tasks Completed on " + date.toDateString() + "\n";
+    tasksCompleted = completedReportLib.getTasksCompletedBetweenDates(
+      startDate,
+      endDate
+    );
+    if (startDate.toDateString() == endDate.toDateString()) {
+      headingDates = "on " + startDate.toDateString();
+    } else {
+      headingDates =
+        "from " + startDate.toDateString() + " to " + endDate.toDateString();
+    }
+    markdown = "# Tasks Completed " + headingDates + "\n";
     currentFolder = "No Folder";
     currentProject = "No Project";
     tasksCompleted.forEach(function(completedTask) {
@@ -132,8 +141,8 @@ var _ = (function() {
     return markdown;
   };
 
-  completedReportLib.runReportForDay = (date, templateUrl) => {
-    let markdown = completedReportLib.getMarkdownReport(date);
+  completedReportLib.runReportForDay = (startDate, endDate, templateUrl) => {
+    let markdown = completedReportLib.getMarkdownReport(startDate, endDate);
 
     fullUrl = templateUrl.replace("{{LIST}}", encodeURIComponent(markdown));
 
@@ -173,10 +182,14 @@ var _ = (function() {
       optionSelected = formObject.values["selectedDay"];
       switch (optionSelected) {
         case "Today":
-          completedReportLib.runReportForDay(today, templateUrl);
+          startDate = Calendar.current.startOfDay(today);
+          endDate = new Date(today.setHours(23, 59, 59, 999));
+          completedReportLib.runReportForDay(startDate, endDate, templateUrl);
           break;
         case "Yesterday":
-          completedReportLib.runReportForDay(yesterday, templateUrl);
+          startDate = Calendar.current.startOfDay(yesterday);
+          endDate = new Date(yesterday.setHours(23, 59, 59, 999));
+          completedReportLib.runReportForDay(startDate, endDate, templateUrl);
           break;
         case "Other":
           selectOtherDateFormPromise = selectOtherDateForm.show(
@@ -184,10 +197,10 @@ var _ = (function() {
             "Continue"
           );
           selectOtherDateFormPromise.then(function(formObject) {
-            completedReportLib.runReportForDay(
-              formObject.values["dateInput"],
-              templateUrl
-            );
+            day = formObject.values["dateInput"];
+            startDate = Calendar.current.startOfDay(day);
+            endDate = new Date(day.setHours(23, 59, 59, 999));
+            completedReportLib.runReportForDay(startDate, endDate, templateUrl);
           });
           selectOtherDateFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
