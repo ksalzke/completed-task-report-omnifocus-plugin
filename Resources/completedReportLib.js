@@ -99,6 +99,7 @@ var _ = (function() {
       startDate,
       endDate
     );
+
     if (startDate.toDateString() == endDate.toDateString()) {
       headingDates = "on " + startDate.toDateString();
     } else {
@@ -111,6 +112,12 @@ var _ = (function() {
     lastTaskName = "";
     taskNameCounter = 1;
     tasksCompleted.forEach(function(completedTask) {
+      // if last instance of same task, show as multiple
+      if (completedTask.name !== lastTaskName && taskNameCounter > 1) {
+        markdown = markdown.replace(/\n$/g, " (x" + taskNameCounter + ")\n");
+        taskNameCounter = 1;
+      }
+
       containingFolder = completedReportLib
         .functionLibrary()
         .getContainingFolder(completedTask).name;
@@ -120,12 +127,14 @@ var _ = (function() {
         }
         currentFolder = containingFolder;
       }
+
       // get current project name - if null (in inbox) use "No Project"
       if (completedTask.containingProject == null) {
         taskProject = "No Project";
       } else {
         taskProject = completedTask.containingProject.name;
       }
+
       // check if project has changed
       if (currentProject !== taskProject) {
         if (config.includeProjectHeadings()) {
@@ -138,10 +147,6 @@ var _ = (function() {
         !(completedTask.project !== null && config.includeProjectHeadings())
       ) {
         if (completedTask.name !== lastTaskName) {
-          if (taskNameCounter > 1) {
-            markdown = markdown.replace(/\n$/g, " (x" + taskNameCounter + ")\n")
-            taskNameCounter = 1;
-          }
           markdown = markdown.concat(" * ", completedTask.name, "\n");
         } else {
           taskNameCounter++;
@@ -243,6 +248,8 @@ var _ = (function() {
           );
           selectCustomPeriodFormPromise.then(function(formObject) {
             startDate = formObject.values["startTime"];
+            console.log("startTime form", formObject.values["startTime"])
+            console.log("endTime form", formObject.values["endTime"])
             endDate = formObject.values["endTime"];
             completedReportLib.runReportForPeriod(
               startDate,
