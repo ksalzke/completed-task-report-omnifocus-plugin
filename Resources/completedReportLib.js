@@ -163,7 +163,7 @@ var _ = (function() {
     selectDayPopupMenu = new Form.Field.Option(
       "selectedDay",
       "Day",
-      ["Today", "Yesterday", "Other"],
+      ["Today", "Yesterday", "Other Day", "Custom Period"],
       null,
       "Today"
     );
@@ -176,6 +176,13 @@ var _ = (function() {
     selectOtherDateDateField = new Form.Field.Date("dateInput", "Date", today);
     selectOtherDateForm.addField(selectOtherDateDateField);
     selectOtherDateFormPrompt = "Select date:";
+
+    var selectCustomPeriodForm = new Form();
+    startTimeField = new Form.Field.Date("startTime", "Start", today);
+    endTimeField = new Form.Field.Date("endTime", "End", today);
+    selectCustomPeriodForm.addField(startTimeField);
+    selectCustomPeriodForm.addField(endTimeField);
+    selectCustomPeriodPrompt = "Select start and end times: ";
 
     // show forms
     selectDayFormPromise.then(function(formObject) {
@@ -191,7 +198,7 @@ var _ = (function() {
           endDate = new Date(yesterday.setHours(23, 59, 59, 999));
           completedReportLib.runReportForDay(startDate, endDate, templateUrl);
           break;
-        case "Other":
+        case "Other Day":
           selectOtherDateFormPromise = selectOtherDateForm.show(
             selectOtherDateFormPrompt,
             "Continue"
@@ -203,6 +210,20 @@ var _ = (function() {
             completedReportLib.runReportForDay(startDate, endDate, templateUrl);
           });
           selectOtherDateFormPromise.catch(function(err) {
+            console.log("form cancelled", err.message);
+          });
+          break;
+        case "Custom Period":
+          selectCustomPeriodFormPromise = selectCustomPeriodForm.show(
+            selectCustomPeriodPrompt,
+            "Continue"
+          );
+          selectCustomPeriodFormPromise.then(function(formObject) {
+            startDate = formObject.values["startTime"];
+            endDate = formObject.values["endTime"];
+            completedReportLib.runReportForDay(startDate, endDate, templateUrl);
+          });
+          selectCustomPeriodFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
           });
           break;
