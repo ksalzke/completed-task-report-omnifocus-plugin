@@ -41,7 +41,21 @@ var _ = (function() {
     // get completed tasks from inbox
     inbox.apply(item => {
       if (completedToday(item)) {
-        tasksCompleted.push(item);
+        // if has children, only add if all children excluded due to hidden tags
+        if (item.hasChildren) {
+          if (
+            item.children.every(child => {
+              return child.tags.some(isHidden);
+            })
+          ) {
+            tasksCompleted.push(item);
+          }
+        }
+        // add if has no children
+        else {
+          tasksCompleted.push(item);
+        }
+        // skip children if showTopLevelOnly is set to true in config
         if (config.showTopLevelOnly()) {
           return ApplyResult.SkipChildren;
         }
