@@ -12,7 +12,7 @@ var _ = (function() {
       "dayone://post?entry={{LIST}}&journal=" +
       encodeURIComponent(dayOneJournalName);
 
-    report = runReport(urlTemplate);
+    report = lib.runReport(urlTemplate);
   });
 
   action.validate = function(selection, sender) {

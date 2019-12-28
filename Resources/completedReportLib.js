@@ -8,15 +8,19 @@ var _ = (function() {
     } else {
       let alert = new Alert(
         "Function Library Required",
-        "For this plug-in bundle (Completed Task Report) to work correctly, my Function Library for OmniFocus (https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately. Either you do not currently have this library file installed, or it is not installed correctly.")
-      alert.show()
+        "For this plug-in bundle (Completed Task Report) to work correctly, my Function Library for OmniFocus (https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately. Either you do not currently have this library file installed, or it is not installed correctly."
+      );
+      alert.show();
     }
   };
 
   completedReportLib.getTasksCompletedOnDate = date => {
     // function to check if a tag is included in 'excluded tags'
+    config = PlugIn.find("com.KaitlinSalzke.completedTaskReport").library(
+      "completedReportConfig"
+    );
     isHidden = element => {
-      return tagsToExclude.includes(element);
+      return config.tagsToExclude().includes(element);
     };
 
     // create an array to store completed tasks
@@ -58,12 +62,13 @@ var _ = (function() {
 
   completedReportLib.getMarkdownReport = date => {
     // generate TaskPaper and send to Day One
-    tasksCompleted = getTasksCompletedOnDate(date);
+    tasksCompleted = completedReportLib.getTasksCompletedOnDate(date);
     markdown = "# Tasks Completed on " + date.toDateString() + "\n";
     currentFolder = "No Folder";
     tasksCompleted.forEach(function(completedTask) {
-      containingFolder = completedReportLib.functionLibrary().getContainingFolder(completedTask)
-        .name;
+      containingFolder = completedReportLib
+        .functionLibrary()
+        .getContainingFolder(completedTask).name;
       if (currentFolder !== containingFolder) {
         markdown = markdown.concat("\n**", containingFolder, "** \n");
         currentFolder = containingFolder;
@@ -74,19 +79,21 @@ var _ = (function() {
   };
 
   completedReportLib.runReportForDay = (date, templateUrl) => {
-    let markdown = getMarkdownReport(date);
+    let markdown = completedReportLib.getMarkdownReport(date);
 
     fullUrl = templateUrl.replace("{{LIST}}", encodeURIComponent(markdown));
 
-    URL.fromString(templateUrl).call(() => {});
+    URL.fromString(fullUrl).call(() => {});
   };
 
   completedReportLib.runReport = templateUrl => {
-    functionLibrary = completedReportLib.functionLibrary()
+    functionLibrary = completedReportLib.functionLibrary();
 
     var now = new Date();
     var today = Calendar.current.startOfDay(now);
-    var yesterday = functionLibrary.removeOneDayFromDate(today);
+    var yesterday = completedReportLib
+      .functionLibrary()
+      .removeOneDayFromDate(today);
 
     // basic selection form - select today, tomorrow, or other
     var selectDayForm = new Form();
@@ -110,14 +117,12 @@ var _ = (function() {
     // show forms
     selectDayFormPromise.then(function(formObject) {
       optionSelected = formObject.values["selectedDay"];
-      console.log(optionSelected);
-      console.log(today);
       switch (optionSelected) {
         case "Today":
-          runReportForDay(today, templateUrl);
+          completedReportLib.runReportForDay(today, templateUrl);
           break;
         case "Yesterday":
-          runReportForDay(yesterday, templateUrl);
+          completedReportLib.runReportForDay(yesterday, templateUrl);
           break;
         case "Other":
           selectOtherDateFormPromise = selectOtherDateForm.show(
@@ -125,7 +130,10 @@ var _ = (function() {
             "Continue"
           );
           selectOtherDateFormPromise.then(function(formObject) {
-            runReportForDay(formObject.values["dateInput"], templateUrl);
+            completedReportLib.runReportForDay(
+              formObject.values["dateInput"],
+              templateUrl
+            );
           });
           selectOtherDateFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
