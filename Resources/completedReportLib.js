@@ -108,13 +108,15 @@ var _ = (function() {
     markdown = "# Tasks Completed " + headingDates + "\n";
     currentFolder = "No Folder";
     currentProject = "No Project";
+    lastTaskName = "";
+    taskNameCounter = 1;
     tasksCompleted.forEach(function(completedTask) {
       containingFolder = completedReportLib
         .functionLibrary()
         .getContainingFolder(completedTask).name;
       if (currentFolder !== containingFolder) {
         if (config.includeFolderHeadings()) {
-          markdown = markdown.concat("\n**", containingFolder, "** \n");
+          markdown = markdown.concat("\n**", containingFolder, "**\n");
         }
         currentFolder = containingFolder;
       }
@@ -127,7 +129,7 @@ var _ = (function() {
       // check if project has changed
       if (currentProject !== taskProject) {
         if (config.includeProjectHeadings()) {
-          markdown = markdown.concat("\n_", taskProject, "_   \n");
+          markdown = markdown.concat("\n_", taskProject, "_\n");
         }
         currentProject = taskProject;
       }
@@ -135,7 +137,16 @@ var _ = (function() {
       if (
         !(completedTask.project !== null && config.includeProjectHeadings())
       ) {
-        markdown = markdown.concat(" * ", completedTask.name, "\n");
+        if (completedTask.name !== lastTaskName) {
+          if (taskNameCounter > 1) {
+            markdown = markdown.replace(/\n$/g, " (x" + taskNameCounter + ")\n")
+            taskNameCounter = 1;
+          }
+          markdown = markdown.concat(" * ", completedTask.name, "\n");
+        } else {
+          taskNameCounter++;
+        }
+        lastTaskName = completedTask.name;
       }
     });
     return markdown;
@@ -191,12 +202,20 @@ var _ = (function() {
         case "Today":
           startDate = Calendar.current.startOfDay(today);
           endDate = new Date(today.setHours(23, 59, 59, 999));
-          completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
+          completedReportLib.runReportForPeriod(
+            startDate,
+            endDate,
+            templateUrl
+          );
           break;
         case "Yesterday":
           startDate = Calendar.current.startOfDay(yesterday);
           endDate = new Date(yesterday.setHours(23, 59, 59, 999));
-          completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
+          completedReportLib.runReportForPeriod(
+            startDate,
+            endDate,
+            templateUrl
+          );
           break;
         case "Other Day":
           selectOtherDateFormPromise = selectOtherDateForm.show(
@@ -207,7 +226,11 @@ var _ = (function() {
             day = formObject.values["dateInput"];
             startDate = Calendar.current.startOfDay(day);
             endDate = new Date(day.setHours(23, 59, 59, 999));
-            completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
+            completedReportLib.runReportForPeriod(
+              startDate,
+              endDate,
+              templateUrl
+            );
           });
           selectOtherDateFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
@@ -221,7 +244,11 @@ var _ = (function() {
           selectCustomPeriodFormPromise.then(function(formObject) {
             startDate = formObject.values["startTime"];
             endDate = formObject.values["endTime"];
-            completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
+            completedReportLib.runReportForPeriod(
+              startDate,
+              endDate,
+              templateUrl
+            );
           });
           selectCustomPeriodFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
