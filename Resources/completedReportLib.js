@@ -42,17 +42,21 @@ var _ = (function() {
     inbox.apply(item => {
       if (completedToday(item)) {
         tasksCompleted.push(item);
-        return ApplyResult.SkipChildren;
+        if (config.showTopLevelOnly()) {
+          return ApplyResult.SkipChildren;
+        }
       }
     });
 
-    // get other tasks (the top-most completed)
+    // get other tasks
     library.apply(function(item) {
       if (item instanceof Project && item.task.hasChildren) {
         item.task.apply(tsk => {
           if (completedToday(tsk)) {
             tasksCompleted.push(tsk);
-            return ApplyResult.SkipChildren;
+            if (config.showTopLevelOnly()) {
+              return ApplyResult.SkipChildren;
+            }
           }
         });
       }
