@@ -29,7 +29,7 @@ var _ = (function() {
     // "Buy groceries" will be included in the final list.
     // If this is set to false, the report will include all completed tasks.
     // THIS SHOULD BE BOOLEAN (TRUE OR FALSE)
-    return false;
+    return true;
   };
 
   return completedReportConfig;

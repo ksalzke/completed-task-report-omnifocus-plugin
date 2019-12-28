@@ -42,7 +42,7 @@ var _ = (function() {
     inbox.apply(item => {
       if (completedToday(item)) {
         // if has children, only add if all children excluded due to hidden tags
-        if (item.hasChildren) {
+        if (item.hasChildren && !config.showTopLevelOnly()) {
           if (
             item.children.every(child => {
               return child.tags.some(isHidden);
@@ -68,7 +68,7 @@ var _ = (function() {
         item.task.apply(tsk => {
           if (completedToday(tsk)) {
             // if has children, only add if all children excluded due to hidden tags
-            if (tsk.hasChildren) {
+            if (tsk.hasChildren && !config.showTopLevelOnly()) {
               if (
                 tsk.children.every(child => {
                   return child.tags.some(isHidden);
