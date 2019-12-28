@@ -16,7 +16,11 @@ Also bear in mind that if a report is run for a date in the past, tasks will onl
 
 ### Trailing spaces in project or folder names
 
-If project or folder names end with trailing spaces, the Markdown formatting will not be applied correctly. 
+If project or folder names end with trailing spaces, the Markdown formatting will not be applied correctly.
+
+### Issue running report on macOS
+
+On OmniFocus 3.4.5 (v128.30 r337536) on macOS, when a date is adjusted in the 'Other Date' or 'Custom Period' forms but the field focus is not subsequently changed, the form value does not seem to change. I believe this may be a bug in OmniFocus and have a note to report it, but in the meantime the workaround is to change the field focus before clicking 'Continue'.
 
 # Installation & Set-Up
 
