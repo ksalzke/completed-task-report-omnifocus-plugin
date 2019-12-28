@@ -27,7 +27,8 @@ var _ = (function() {
     // top-level task that has been completed; e.g if a task or project
     // "Buy groceries" has subtasks "Buy potatoes" and "Buy milk", only
     // "Buy groceries" will be included in the final list.
-    // If this is set to false, the report will include all completed tasks.
+    // If this is set to false, the report will include all completed tasks
+    // that do not have children, or whose children are all hidden.
     // THIS SHOULD BE BOOLEAN (TRUE OR FALSE)
     return true;
   };
