@@ -122,7 +122,12 @@ var _ = (function() {
         }
         currentProject = taskProject;
       }
-      markdown = markdown.concat(" * ", completedTask.name, "\n");
+      // include task, unless it's a project and project headings are shown
+      if (
+        !(completedTask.project !== null && config.includeProjectHeadings())
+      ) {
+        markdown = markdown.concat(" * ", completedTask.name, "\n");
+      }
     });
     return markdown;
   };
