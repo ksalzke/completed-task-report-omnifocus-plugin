@@ -98,12 +98,12 @@ This function takes a start time and end time (in the Date format) as input and 
 
 This function takes a start time and end time as input (in the Date format) and returns a string which a report showing the tasks that have been completed between the two times (in Markdown format).
 
-## runReportForDay (startDate, endDate, templateUrl)
+## runReportForPeriod (startDate, endDate, templateUrl)
 
 This function takes a start time and end time as input (in the Date format) as well as a string which uses a URL scheme. The placeholder `{{LIST}}` can be used in the URL to indicate where the Markdown list of tasks which have been completed between the two times should be included.
 
 The function will generate the Markdown list using `getMarkdownReport` and then call the specified URL.
 
-## runReport (templateUrl)
+## promptAndRunReport (templateUrl)
 
-This function will complete steps 1-3 directly under `Actions` above (most noteably prompting the user for input), then call `runReportForDay` to create the report.
+This function will complete steps 1-3 directly under `Actions` above (most noteably prompting the user for input), then call `runReportForPeriod` to create the report.

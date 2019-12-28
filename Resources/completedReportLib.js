@@ -141,7 +141,7 @@ var _ = (function() {
     return markdown;
   };
 
-  completedReportLib.runReportForDay = (startDate, endDate, templateUrl) => {
+  completedReportLib.runReportForPeriod = (startDate, endDate, templateUrl) => {
     let markdown = completedReportLib.getMarkdownReport(startDate, endDate);
 
     fullUrl = templateUrl.replace("{{LIST}}", encodeURIComponent(markdown));
@@ -149,7 +149,7 @@ var _ = (function() {
     URL.fromString(fullUrl).call(() => {});
   };
 
-  completedReportLib.runReport = templateUrl => {
+  completedReportLib.promptAndRunReport = templateUrl => {
     functionLibrary = completedReportLib.functionLibrary();
 
     var now = new Date();
@@ -191,12 +191,12 @@ var _ = (function() {
         case "Today":
           startDate = Calendar.current.startOfDay(today);
           endDate = new Date(today.setHours(23, 59, 59, 999));
-          completedReportLib.runReportForDay(startDate, endDate, templateUrl);
+          completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
           break;
         case "Yesterday":
           startDate = Calendar.current.startOfDay(yesterday);
           endDate = new Date(yesterday.setHours(23, 59, 59, 999));
-          completedReportLib.runReportForDay(startDate, endDate, templateUrl);
+          completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
           break;
         case "Other Day":
           selectOtherDateFormPromise = selectOtherDateForm.show(
@@ -207,7 +207,7 @@ var _ = (function() {
             day = formObject.values["dateInput"];
             startDate = Calendar.current.startOfDay(day);
             endDate = new Date(day.setHours(23, 59, 59, 999));
-            completedReportLib.runReportForDay(startDate, endDate, templateUrl);
+            completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
           });
           selectOtherDateFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);
@@ -221,7 +221,7 @@ var _ = (function() {
           selectCustomPeriodFormPromise.then(function(formObject) {
             startDate = formObject.values["startTime"];
             endDate = formObject.values["endTime"];
-            completedReportLib.runReportForDay(startDate, endDate, templateUrl);
+            completedReportLib.runReportForPeriod(startDate, endDate, templateUrl);
           });
           selectCustomPeriodFormPromise.catch(function(err) {
             console.log("form cancelled", err.message);

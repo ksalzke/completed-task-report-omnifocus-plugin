@@ -5,11 +5,11 @@ var _ = (function() {
 
     // FUNCTIONS FROM LIBRARY
     lib = this.completedReportLib;
-    runReport = lib.runReport;
+    promptAndRunReport = lib.promptAndRunReport;
 
     urlTemplate = "drafts5://create?text={{LIST}}";
 
-    report = lib.runReport(urlTemplate);
+    report = lib.promptAndRunReport(urlTemplate);
   });
 
   action.validate = function(selection, sender) {
