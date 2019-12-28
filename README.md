@@ -14,6 +14,10 @@ Although this plugin will allow a report to be run for any period of time, the D
 
 Also bear in mind that if a report is run for a date in the past, tasks will only be included in the report if they are still in the database (e.g. if tasks from that date have been archived they will not appear in the report).
 
+### Trailing spaces in project or folder names
+
+If project or folder names end with trailing spaces, the Markdown formatting will not be applied correctly. 
+
 # Installation & Set-Up
 
 (For instructions on getting started with Omni Automation, see [here](https://kaitlinsalzke.com/how-to/how-to-add-a-omnijs-plug-in-to-omnifocus-and-assign-a-keyboard-shortcut/).)
