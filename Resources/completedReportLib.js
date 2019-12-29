@@ -111,6 +111,7 @@ var _ = (function() {
     currentProject = "No Project";
     lastTaskName = "";
     taskNameCounter = 1;
+    projectNameCounter = 1;
     tasksCompleted.forEach(function(completedTask) {
       // if last instance of same task, show as multiple
       if (completedTask.name !== lastTaskName && taskNameCounter > 1) {
@@ -138,9 +139,18 @@ var _ = (function() {
       // check if project has changed
       if (currentProject !== taskProject) {
         if (config.includeProjectHeadings()) {
+          if (projectNameCounter > 1) {
+            markdown = markdown.replace(
+              /\n$/g,
+              " (x" + projectNameCounter + ")\n"
+            );
+          }
           markdown = markdown.concat("\n_", taskProject.trim(), "_\n");
         }
         currentProject = taskProject;
+        projectNameCounter = 1;
+      } else if (completedTask.name == currentProject) {
+        projectNameCounter++;
       }
       // include task, unless it's a project and project headings are shown
       if (
@@ -248,8 +258,6 @@ var _ = (function() {
           );
           selectCustomPeriodFormPromise.then(function(formObject) {
             startDate = formObject.values["startTime"];
-            console.log("startTime form", formObject.values["startTime"])
-            console.log("endTime form", formObject.values["endTime"])
             endDate = formObject.values["endTime"];
             completedReportLib.runReportForPeriod(
               startDate,

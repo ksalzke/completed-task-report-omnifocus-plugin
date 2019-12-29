@@ -47,7 +47,7 @@ In both cases, the action:
     * A `h1` heading such as `Tasks Completed on Mon Dec 23 2019` (for the first three options, or if the custom period begins and ends on the same date) or `Tasks Completed from Mon Dec 23 2019 to Wed Dec 25 2019`.
     * (If `includeFolderHeadings` is set to true) a bold heading for each top-level folder (where the folder has completed tasks)
     * (If `includeProjectHeadings` is set to true) an italic heading for each project (where the project has completed tasks).
-    * A list of completed tasks, grouped under the applicable folder and project headings if shown (Note that the root project task will not be included in the 'task' listing if a project heading is already shown.) If there are multiple tasks with the same name in a row (for example as the result of a repeating task) the task will only be listed once with (for example) `(x5)` appended.
+    * A list of completed tasks, grouped under the applicable folder and project headings if shown (Note that the root project task will not be included in the 'task' listing if a project heading is already shown.) If there are multiple tasks (or projects, where project headings are shown) with the same name in a row (for example as the result of a repeating task) the task will only be listed once with (for example) `(x5)` appended.
 
 ## To Day One
 
