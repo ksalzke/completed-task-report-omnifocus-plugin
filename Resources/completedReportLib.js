@@ -123,7 +123,7 @@ var _ = (function() {
         .getContainingFolder(completedTask).name;
       if (currentFolder !== containingFolder) {
         if (config.includeFolderHeadings()) {
-          markdown = markdown.concat("\n**", containingFolder, "**\n");
+          markdown = markdown.concat("\n**", containingFolder.trim(), "**\n");
         }
         currentFolder = containingFolder;
       }
@@ -138,7 +138,7 @@ var _ = (function() {
       // check if project has changed
       if (currentProject !== taskProject) {
         if (config.includeProjectHeadings()) {
-          markdown = markdown.concat("\n_", taskProject, "_\n");
+          markdown = markdown.concat("\n_", taskProject.trim(), "_\n");
         }
         currentProject = taskProject;
       }
