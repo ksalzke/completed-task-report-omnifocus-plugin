@@ -40,8 +40,8 @@ In both cases, the action:
 1. Asks the user to select a day for the report. The options are:
     * Today (default)
     * Yesterday
-    * Other Date - If this is selected, the user will also be prompted for a specific date. (A time is shown but may be ignored.)
-    * Custom Period - If this is selected, the user will also be prompted to enter a start and end time. (In this case, the specific times will be used.)
+    * Other Date - If this is selected, the user will also be prompted for a specific date. Note that [OmniFocus date parsing](https://support.omnigroup.com/documentation/omnifocus/mac/3.4/en/the-inspector/#dates) can be used. (A time is shown but may be ignored.)
+    * Custom Period - If this is selected, the user will also be prompted to enter a start and end time. Note that [OmniFocus date parsing](https://support.omnigroup.com/documentation/omnifocus/mac/3.4/en/the-inspector/#dates) can be used. (In this case, the specific times will be used.)
 2. Identifies tasks that have been completed on the entered date (in the first three cases) or between the specified times (if a Custom Period is entered), provided they do not have any of the tags from the `tagsToExclude` list set up in the configuration. If `showTopLevelOnly` is set to true in the configuration file, this stops at the top-level task that has been completed; e.g if a task or project "Buy groceries" has subtasks "Buy potatoes" and "Buy milk", only "Buy groceries" will be included in the final list. If this is set to false, the report will include all completed tasks that do not have children, or whose children are all hidden.
 3. Generates a report including those tasks in Markdown, with:
     * A `h1` heading such as `Tasks Completed on Mon Dec 23 2019` (for the first three options, or if the custom period begins and ends on the same date) or `Tasks Completed from Mon Dec 23 2019 to Wed Dec 25 2019`.
