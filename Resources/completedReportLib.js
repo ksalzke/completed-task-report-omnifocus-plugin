@@ -182,7 +182,7 @@ var _ = (function() {
     var today = Calendar.current.startOfDay(now);
     var yesterday = completedReportLib
       .functionLibrary()
-      .removeOneDayFromDate(today);
+      .adjustDateByDays(today, -1);
 
     // basic selection form - select today, tomorrow, or other
     var selectDayForm = new Form();
