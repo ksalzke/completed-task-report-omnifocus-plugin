@@ -45,5 +45,5 @@
     return false;
   };
 
-  return completedRepUportConfig;
+  return completedReportConfig;
 })();
