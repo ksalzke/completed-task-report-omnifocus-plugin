@@ -1,4 +1,4 @@
-var _ = (function() {
+(() => {
   var completedReportLib = new PlugIn.Library(new Version("1.0"));
 
   completedReportLib.functionLibrary = () => {
@@ -19,7 +19,7 @@ var _ = (function() {
     config = PlugIn.find("com.KaitlinSalzke.completedTaskReport").library(
       "completedReportConfig"
     );
-    isHidden = element => {
+    isHidden = (element) => {
       return config.tagsToExclude().includes(element);
     };
 
@@ -27,7 +27,7 @@ var _ = (function() {
     var tasksCompleted = new Array();
 
     // function to check if a task was completed today
-    completedToday = item => {
+    completedToday = (item) => {
       if (
         item.completed &&
         item.completionDate > startDate &&
@@ -39,12 +39,12 @@ var _ = (function() {
     };
 
     // get completed tasks from inbox
-    inbox.apply(item => {
+    inbox.apply((item) => {
       if (completedToday(item)) {
         // if has children, only add if all children excluded due to hidden tags
         if (item.hasChildren && !config.showTopLevelOnly()) {
           if (
-            item.children.every(child => {
+            item.children.every((child) => {
               return child.tags.some(isHidden);
             })
           ) {
@@ -63,14 +63,14 @@ var _ = (function() {
     });
 
     // get other tasks
-    library.apply(function(item) {
+    library.apply(function (item) {
       if (item instanceof Project && item.task.hasChildren) {
-        item.task.apply(tsk => {
+        item.task.apply((tsk) => {
           if (completedToday(tsk)) {
             // if has children, only add if all children excluded due to hidden tags
             if (tsk.hasChildren && !config.showTopLevelOnly()) {
               if (
-                tsk.children.every(child => {
+                tsk.children.every((child) => {
                   return child.tags.some(isHidden);
                 })
               ) {
@@ -112,7 +112,7 @@ var _ = (function() {
     lastTaskName = "";
     taskNameCounter = 1;
     projectNameCounter = 1;
-    tasksCompleted.forEach(function(completedTask) {
+    tasksCompleted.forEach(function (completedTask) {
       // if last instance of same task, show as multiple
       if (completedTask.name !== lastTaskName && taskNameCounter > 1) {
         markdown = markdown.replace(/\n$/g, " (x" + taskNameCounter + ")\n");
@@ -175,7 +175,7 @@ var _ = (function() {
     URL.fromString(fullUrl).call(() => {});
   };
 
-  completedReportLib.promptAndRunReport = templateUrl => {
+  completedReportLib.promptAndRunReport = (templateUrl) => {
     functionLibrary = completedReportLib.functionLibrary();
 
     var now = new Date();
@@ -211,7 +211,7 @@ var _ = (function() {
     selectCustomPeriodPrompt = "Select start and end times: ";
 
     // show forms
-    selectDayFormPromise.then(function(formObject) {
+    selectDayFormPromise.then(function (formObject) {
       optionSelected = formObject.values["selectedDay"];
       switch (optionSelected) {
         case "Today":
@@ -237,7 +237,7 @@ var _ = (function() {
             selectOtherDateFormPrompt,
             "Continue"
           );
-          selectOtherDateFormPromise.then(function(formObject) {
+          selectOtherDateFormPromise.then(function (formObject) {
             day = formObject.values["dateInput"];
             startDate = Calendar.current.startOfDay(day);
             endDate = new Date(day.setHours(23, 59, 59, 999));
@@ -247,7 +247,7 @@ var _ = (function() {
               templateUrl
             );
           });
-          selectOtherDateFormPromise.catch(function(err) {
+          selectOtherDateFormPromise.catch(function (err) {
             console.log("form cancelled", err.message);
           });
           break;
@@ -256,7 +256,7 @@ var _ = (function() {
             selectCustomPeriodPrompt,
             "Continue"
           );
-          selectCustomPeriodFormPromise.then(function(formObject) {
+          selectCustomPeriodFormPromise.then(function (formObject) {
             startDate = formObject.values["startTime"];
             endDate = formObject.values["endTime"];
             completedReportLib.runReportForPeriod(
@@ -265,7 +265,7 @@ var _ = (function() {
               templateUrl
             );
           });
-          selectCustomPeriodFormPromise.catch(function(err) {
+          selectCustomPeriodFormPromise.catch(function (err) {
             console.log("form cancelled", err.message);
           });
           break;
@@ -273,11 +273,10 @@ var _ = (function() {
       }
     });
 
-    selectDayFormPromise.catch(function(err) {
+    selectDayFormPromise.catch(function (err) {
       console.log("form cancelled", err.message);
     });
   };
 
   return completedReportLib;
 })();
-_;

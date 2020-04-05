@@ -1,5 +1,5 @@
-var _ = (function() {
-  var action = new PlugIn.Action(function(selection, sender) {
+(() => {
+  var action = new PlugIn.Action(function (selection, sender) {
     // CONFIGURATION
     config = this.completedReportConfig;
     dayOneJournalName = config.dayOneJournalName();
@@ -15,10 +15,9 @@ var _ = (function() {
     report = lib.promptAndRunReport(urlTemplate);
   });
 
-  action.validate = function(selection, sender) {
+  action.validate = function (selection, sender) {
     return true;
   };
 
   return action;
 })();
-_;

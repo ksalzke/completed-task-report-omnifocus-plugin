@@ -1,4 +1,4 @@
-var _ = (function() {
+(() => {
   var completedReportConfig = new PlugIn.Library(new Version("1.0"));
 
   completedReportConfig.tagsToExclude = () => {
@@ -11,7 +11,7 @@ var _ = (function() {
       tagNamed("Repeating/Routine")
         .tagNamed("↻")
         .tagNamed("Repeating Project")
-        .tagNamed("⥁")
+        .tagNamed("⥁"),
     ];
   };
 
@@ -42,9 +42,8 @@ var _ = (function() {
   completedReportConfig.includeProjectHeadings = () => {
     // If this option is set to true, the report will include project headings
     // THIS SHOULD BE BOOLEAN (TRUE OR FALSE)
-    return true;
+    return false;
   };
 
-  return completedReportConfig;
+  return completedRepUportConfig;
 })();
-_;
