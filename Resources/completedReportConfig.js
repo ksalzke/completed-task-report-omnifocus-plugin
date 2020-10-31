@@ -6,12 +6,9 @@
     // tasks that have these tags will be excluded from the report
     // THIS SHOULD BE AN ARRAY OF TAGS
     return [
-      tagNamed("Activity Type").tagNamed("⏳ Waiting"),
-      tagNamed("✓"),
-      tagNamed("Repeating/Routine")
-        .tagNamed("↻")
-        .tagNamed("Repeating Project")
-        .tagNamed("⥁"),
+      tagsMatching("⏳ Waiting")[0],
+      tagsMatching("✓")[0],
+      tagsMatching("⥁")[0],
     ];
   };
 
