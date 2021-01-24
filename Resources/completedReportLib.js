@@ -64,7 +64,8 @@
 
     // get other tasks
     library.apply(function (item) {
-      if (item instanceof Project && item.task.hasChildren) {
+      console.log(config.projectsToExclude())
+      if (item instanceof Project && !config.projectsToExclude().includes(item) && item.task.hasChildren) {
         item.task.apply((tsk) => {
           if (completedToday(tsk)) {
             // if has children, only add if all children excluded due to hidden tags
