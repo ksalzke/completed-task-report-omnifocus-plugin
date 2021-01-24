@@ -158,7 +158,7 @@
         !(completedTask.project !== null && config.includeProjectHeadings())
       ) {
         if (completedTask.name !== lastTaskName) {
-          markdown = markdown.concat(" * ", completedTask.name, "\n");
+          markdown = markdown.concat(config.bulletPoint(), completedTask.name, "\n");
         } else {
           taskNameCounter++;
         }

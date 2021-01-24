@@ -50,5 +50,11 @@
     return false
   }
 
+  completedReportConfig.bulletPoint = () => {
+    // Enter a string to use as the bullet point before each task
+    // THIS SHOULD BE A STRING
+    return ' * '
+  }
+
   return completedReportConfig
 })()
