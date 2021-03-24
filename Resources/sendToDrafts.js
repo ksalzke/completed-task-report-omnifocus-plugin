@@ -1,21 +1,18 @@
+/* global PlugIn */
 (() => {
-  var action = new PlugIn.Action(function (selection, sender) {
-    // CONFIGURATION
-    config = this.completedReportConfig;
-
+  const action = new PlugIn.Action(function (selection, sender) {
     // FUNCTIONS FROM LIBRARY
-    lib = this.completedReportLib;
-    promptAndRunReport = lib.promptAndRunReport;
+    const lib = this.completedReportLib
 
-    urlTemplate = "drafts5://create?text={{LIST}}";
+    const urlTemplate = 'drafts5://create?text={{LIST}}'
 
-    report = lib.promptAndRunReport(urlTemplate);
-  });
+    lib.promptAndRunReport(urlTemplate)
+  })
 
   action.validate = function (selection, sender) {
     // only valid if nothing is selected - so does not show in share menu
-    return selection.tasks.length == 0 && selection.projects.length == 0;
-  };
+    return selection.tasks.length === 0 && selection.projects.length === 0
+  }
 
-  return action;
-})();
+  return action
+})()
