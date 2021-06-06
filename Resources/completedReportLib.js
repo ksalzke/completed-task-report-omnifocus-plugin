@@ -1,4 +1,4 @@
-/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar */
+/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar Pasteboard */
 (() => {
   const completedReportLib = new PlugIn.Library(new Version('1.0'))
 
@@ -167,9 +167,14 @@
   completedReportLib.runReportForPeriod = (startDate, endDate, templateUrl) => {
     const markdown = completedReportLib.getMarkdownReport(startDate, endDate)
 
-    const fullUrl = templateUrl.replace('{{LIST}}', encodeURIComponent(markdown))
+    if (templateUrl === 'CLIPBOARD') {
+      Pasteboard.general.string = markdown
+      new Alert('Done!', 'Completed task report has been copied to the clipboard.').show()
+    } else {
+      const fullUrl = templateUrl.replace('{{LIST}}', encodeURIComponent(markdown))
 
-    URL.fromString(fullUrl).call(() => {})
+      URL.fromString(fullUrl).call(() => {})
+    }
   }
 
   completedReportLib.promptAndRunReport = (templateUrl) => {

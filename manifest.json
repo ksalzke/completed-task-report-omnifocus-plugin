@@ -6,7 +6,8 @@
   "version": "1.0.0",
   "actions": [
     { "identifier": "sendToDayOne" },
-    { "identifier": "sendToDrafts" }
+    { "identifier": "sendToDrafts" },
+    { "identifier": "copyToClipboard" }
   ],
   "libraries": [
     { "identifier": "completedReportConfig" },

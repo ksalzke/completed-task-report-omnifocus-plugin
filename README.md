@@ -55,6 +55,10 @@ This action generates the report as described above and sends it to the Day One 
 
 This action generates the report as described above and creates a new draft in Drafts (using the Drafts URL scheme).
 
+## Copy To Clipboard
+
+This action generates the report as described above, copies it to the clipboard, and shows an alert when this has been completed.
+
 ## Adding New Actions
 
 Given a particular URL scheme, a new action can be added by:
@@ -102,9 +106,11 @@ This function takes a start time and end time as input (in the Date format) and 
 
 ## runReportForPeriod (startDate, endDate, templateUrl)
 
-This function takes a start time and end time as input (in the Date format) as well as a string which uses a URL scheme. The placeholder `{{LIST}}` can be used in the URL to indicate where the Markdown list of tasks which have been completed between the two times should be included.
+This function takes a start time and end time as input (in the Date format) as well as a string which uses a URL scheme. The placeholder `{{LIST}}` can be used in the URL to indicate where the Markdown list of tasks which have been completed between the two times should be included. 
 
 The function will generate the Markdown list using `getMarkdownReport` and then call the specified URL.
+
+Special case: If the templateURL is set to 'CLIPBOARD' the report will instead be copied to the clipboard.
 
 ## promptAndRunReport (templateUrl)
 
