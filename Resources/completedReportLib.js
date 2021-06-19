@@ -89,9 +89,7 @@
     return tasksCompleted
   }
 
-  completedReportLib.getMarkdownReport = (startDate, endDate, tasksCompleted) => {
-    const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library('completedReportConfig')
-
+  completedReportLib.makeDateHeading = (startDate, endDate) => {
     let headingDates
     if (startDate.toDateString() === endDate.toDateString()) {
       headingDates = 'on ' + startDate.toDateString()
@@ -99,7 +97,13 @@
       headingDates =
         'from ' + startDate.toDateString() + ' to ' + endDate.toDateString()
     }
-    let markdown = '# Tasks Completed ' + headingDates + '\n'
+    return '# Tasks Completed ' + headingDates + '\n'
+  }
+
+  completedReportLib.getMarkdownReport = (heading, tasksCompleted) => {
+    const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library('completedReportConfig')
+
+    let markdown = heading
     let currentFolder = 'No Folder'
     let currentProject = 'No Project'
     let lastTaskName = ''
@@ -165,7 +169,9 @@
       endDate
     )
 
-    const markdown = completedReportLib.getMarkdownReport(startDate, endDate, tasksCompleted)
+    const heading = completedReportLib.makeDateHeading(startDate, endDate)
+
+    const markdown = completedReportLib.getMarkdownReport(heading, tasksCompleted)
 
     if (templateUrl === 'CLIPBOARD') {
       Pasteboard.general.string = markdown
