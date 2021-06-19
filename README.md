@@ -100,9 +100,13 @@ This plug-in bundle also contains several functions in the `completedReportLib` 
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.
 
-## getMarkdownReport (startDate, endDate)
+## makeDateHeading (startDate, endDate)
 
-This function takes a start time and end time as input (in the Date format) and returns a string which a report showing the tasks that have been completed between the two times (in Markdown format).
+This function produces a markdown heading using the provided start and end dates.
+
+## getMarkdownReport (heading, tasksCompleted)
+
+This function takes a heading and an array of tasks as input, and returns a string which is a report listing the tasks (in Markdown format).
 
 ## runReportForPeriod (startDate, endDate, templateUrl)
 
