@@ -5,9 +5,9 @@
   "description": "Plugin to generate a daily completed task report from OmniFocus",
   "version": "2.0.0",
   "actions": [
-    { "identifier": "sendToDayOne" },
-    { "identifier": "sendToDrafts" },
-    { "identifier": "copyToClipboard" }
+    { "identifier": "sendToDayOne", "image": "bookmark" },
+    { "identifier": "sendToDrafts", "image": "square.on.square" },
+    { "identifier": "copyToClipboard", "image": "arrow.right.doc.on.clipboard" }
   ],
   "libraries": [
     { "identifier": "completedReportConfig" },
