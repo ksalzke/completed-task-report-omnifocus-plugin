@@ -30,9 +30,9 @@ For instructions on adding additional actions to run custom reports or different
 
 # Actions
 
-This plug-in bundle contains two actions, `To Day One` and `To Drafts`.
+This plug-in bundle contains three actions, `To Day One`, `To Drafts`, and `Copy To Clipboard`.
 
-In both cases, the action:
+In all cases, the action:
 1. Asks the user to select a day for the report. The options are:
     * Today (default)
     * Yesterday
@@ -68,26 +68,22 @@ If you do create a new action, consider creating a pull request so that it can b
 
 **Sample code:**
 ```
-var _ = (function() {
-  var action = new PlugIn.Action(function(selection, sender) {
+(() => {
+  const action = new PlugIn.Action(function (selection, sender) {
+    const lib = this.completedReportLib
 
-    // FUNCTIONS FROM LIBRARY
-    lib = this.completedReportLib;
-    runReport = lib.runReport;
+    const urlTemplate = 'someapp://post?entry={{LIST}}'
 
-    urlTemplate =
-      "someapp://post?entry={{LIST}}"
+    lib.promptAndRunReport(urlTemplate)
+  })
 
-    report = lib.runReport(urlTemplate);
-  });
+  action.validate = function (selection, sender) {
+    // only valid if nothing is selected - so does not show in share menu
+    return selection.tasks.length === 0 && selection.projects.length === 0
+  }
 
-  action.validate = function(selection, sender) {
-    return true;
-  };
-
-  return action;
-})();
-_;
+  return action
+})()
 ```
 
 # Functions
