@@ -18,8 +18,6 @@ Refer to the 'issues' in this repo for any other known issues and planned change
 
 # Installation & Set-Up
 
-(For instructions on getting started with Omni Automation, see [here](https://kaitlinsalzke.com/how-to/how-to-add-a-omnijs-plug-in-to-omnifocus-and-assign-a-keyboard-shortcut/).)
-
 **Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
 
 1. Click on the green `Clone or download` button above to download a `.zip` file of all the files in this GitHub repository.
