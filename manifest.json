@@ -24,9 +24,6 @@
   ],
   "libraries": [
     {
-      "identifier": "completedReportConfig"
-    },
-    {
       "identifier": "completedReportLib"
     }
   ]
