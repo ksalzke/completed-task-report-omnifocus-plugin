@@ -110,6 +110,10 @@ This function returns a string containing the Day One journal name, if it has be
 
 This function returns a boolean value reflecting whether the 'Show Top Level Only' preference has been set. If no preference has been set, this defaults to true.
 
+## getIncludeFolderHeadings ()
+
+This function returns a boolean value reflecting whether the 'Include Folder Headings' preference has been set. If no preference has been set, this defaults to true.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

@@ -60,6 +60,11 @@
     return (preferences.read('showTopLevelOnly') !== null) ? preferences.readBoolean('showTopLevelOnly') : true
   }
 
+  completedReportLib.getIncludeFolderHeadings = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.read('includeFolderHeadings') !== null) ? preferences.read('includeFolderHeadings') : true
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const isHidden = (element) => {
@@ -163,7 +168,7 @@
         .functionLibrary()
         .getContainingFolder(completedTask).name
       if (currentFolder !== containingFolder) {
-        if (config.includeFolderHeadings()) {
+        if (completedReportLib.getIncludeFolderHeadings()) {
           markdown = markdown.concat('\n**', containingFolder.trim(), '**\n')
         }
         currentFolder = containingFolder

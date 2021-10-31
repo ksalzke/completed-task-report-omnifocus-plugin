@@ -6,7 +6,7 @@
     // get current preferences or set defaults if they don't yet exist
     const dayOneJournalName = preferences.readString('dayOneJournalName')
     const showTopLevelOnly = this.completedReportLib.getShowTopLevelOnly()
-    const includeFolderHeadings = (preferences.read('includeFolderHeadings') !== null) ? preferences.read('includeFolderHeadings') : true
+    const includeFolderHeadings = this.completedReportLib.getIncludeFolderHeadings()
     const includeProjectHeadings = (preferences.read('includeProjectHeadings') !== null) ? preferences.read('includeProjectHeadings') : false
     const bulletPoint = (preferences.readString('bulletPoint') !== null) ? preferences.readString('bulletPoint') : ' * '
     const tagsToExclude = this.completedReportLib.getExcludedTags()
