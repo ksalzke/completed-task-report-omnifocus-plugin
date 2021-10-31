@@ -98,6 +98,10 @@ This function loads the synced preferences for the 'Completed Task Report' plugi
 
 This function returns an array of excluded tags, as set in the preferences. If no preference has been set, it returns an empty array.
 
+## getDayOneJournalName ()
+
+This function returns a string containing the Day One journal name, if it has been set in the preferences. If it has not been set, a form is shown prompting the user for the name of the journal and the entered string is saved in preferences.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

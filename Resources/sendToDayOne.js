@@ -1,16 +1,11 @@
 /* global PlugIn */
 (() => {
   const action = new PlugIn.Action(function (selection, sender) {
-    // CONFIGURATION
-    const config = this.completedReportConfig
-    const dayOneJournalName = config.dayOneJournalName()
-
-    // FUNCTIONS FROM LIBRARY
     const lib = this.completedReportLib
 
     const urlTemplate =
       'dayone://post?entry={{LIST}}&journal=' +
-      encodeURIComponent(dayOneJournalName)
+      encodeURIComponent(lib.getDayOneJournalName())
 
     lib.promptAndRunReport(urlTemplate)
   })

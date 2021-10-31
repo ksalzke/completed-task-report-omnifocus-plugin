@@ -35,6 +35,21 @@
     return (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)) : []
   }
 
+  completedReportLib.getDayOneJournalName = async () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    const dayOneJournalName = preferences.readString('dayOneJournalName')
+
+    // return name if already set
+    if (dayOneJournalName !== null) return dayOneJournalName
+
+    // if not set, prompt user for string, save preference and return name
+    const form = new Form()
+    form.addField(new Form.Field.String('dayOneJournalName', 'Day One Journal Name', '', null))
+    await form.show('Send To Day One', 'OK')
+    preferences.write('dayOneJournalName', form.values.dayOneJournalName)
+    return form.values.dayOneJournalName
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library(
