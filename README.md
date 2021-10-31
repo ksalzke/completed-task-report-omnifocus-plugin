@@ -114,6 +114,10 @@ This function returns a boolean value reflecting whether the 'Show Top Level Onl
 
 This function returns a boolean value reflecting whether the 'Include Folder Headings' preference has been set. If no preference has been set, this defaults to true.
 
+## getIncludeProjectHeadings ()
+
+This function returns a boolean value reflecting whether the 'Include Project Headings' preference has been set. If no preference has been set, this defaults to true.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

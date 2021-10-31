@@ -65,6 +65,11 @@
     return (preferences.read('includeFolderHeadings') !== null) ? preferences.read('includeFolderHeadings') : true
   }
 
+  completedReportLib.getIncludeProjectHeadings = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.read('includeProjectHeadings') !== null) ? preferences.read('includeProjectHeadings') : false
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const isHidden = (element) => {
@@ -183,7 +188,7 @@
 
       // check if project has changed
       if (currentProject !== taskProject) {
-        if (config.includeProjectHeadings()) {
+        if (completedReportLib.getIncludeProjectHeadings()) {
           if (projectNameCounter > 1) {
             markdown = markdown.replace(
               /\n$/g,
@@ -199,7 +204,7 @@
       }
       // include task, unless it's a project and project headings are shown
       if (
-        !(completedTask.project !== null && config.includeProjectHeadings())
+        !(completedTask.project !== null && completedReportLib.getIncludeProjectHeadings())
       ) {
         if (completedTask.name !== lastTaskName) {
           markdown = markdown.concat(config.bulletPoint(), completedTask.name, '\n')
