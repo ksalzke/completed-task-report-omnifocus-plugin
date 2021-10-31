@@ -210,7 +210,7 @@
         !(completedTask.project !== null && completedReportLib.getIncludeProjectHeadings())
       ) {
         if (completedTask.name !== lastTaskName) {
-          markdown = markdown.concat(completedReportLib.bulletPoint(), completedTask.name, '\n')
+          markdown = markdown.concat(completedReportLib.getBulletPoint(), completedTask.name, '\n')
         } else {
           taskNameCounter++
         }
@@ -221,14 +221,17 @@
   }
 
   completedReportLib.runReportForPeriod = (startDate, endDate, templateUrl) => {
+    console.log('running report for period')
     const tasksCompleted = completedReportLib.getTasksCompletedBetweenDates(
       startDate,
       endDate
     )
-
+    console.log('tasks completed: ' + tasksCompleted)
     const heading = completedReportLib.makeDateHeading(startDate, endDate)
+    console.log(heading)
 
     const markdown = completedReportLib.getMarkdownReport(heading, tasksCompleted)
+    console.log(markdown)
 
     if (templateUrl === 'CLIPBOARD') {
       Pasteboard.general.string = markdown
