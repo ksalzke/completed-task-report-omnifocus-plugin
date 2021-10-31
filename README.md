@@ -118,6 +118,10 @@ This function returns a boolean value reflecting whether the 'Include Folder Hea
 
 This function returns a boolean value reflecting whether the 'Include Project Headings' preference has been set. If no preference has been set, this defaults to true.
 
+## getBulletPoint ()
+
+This function returns a string containing the bullet point that has been set in preferences. If no prefernce has been set, this defaults to `' * '`.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

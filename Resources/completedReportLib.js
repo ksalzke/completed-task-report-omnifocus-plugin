@@ -70,6 +70,11 @@
     return (preferences.read('includeProjectHeadings') !== null) ? preferences.read('includeProjectHeadings') : false
   }
 
+  completedReportLib.getBulletPoint = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.readString('bulletPoint') !== null) ? preferences.readString('bulletPoint') : ' * '
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const isHidden = (element) => {
@@ -155,8 +160,6 @@
   }
 
   completedReportLib.getMarkdownReport = (heading, tasksCompleted) => {
-    const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library('completedReportConfig')
-
     let markdown = heading
     let currentFolder = 'No Folder'
     let currentProject = 'No Project'
@@ -207,7 +210,7 @@
         !(completedTask.project !== null && completedReportLib.getIncludeProjectHeadings())
       ) {
         if (completedTask.name !== lastTaskName) {
-          markdown = markdown.concat(config.bulletPoint(), completedTask.name, '\n')
+          markdown = markdown.concat(completedReportLib.bulletPoint(), completedTask.name, '\n')
         } else {
           taskNameCounter++
         }

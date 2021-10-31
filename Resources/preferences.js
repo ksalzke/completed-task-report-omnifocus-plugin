@@ -8,7 +8,7 @@
     const showTopLevelOnly = this.completedReportLib.getShowTopLevelOnly()
     const includeFolderHeadings = this.completedReportLib.getIncludeFolderHeadings()
     const includeProjectHeadings = this.completedReportLib.getIncludeProjectHeadings()
-    const bulletPoint = (preferences.readString('bulletPoint') !== null) ? preferences.readString('bulletPoint') : ' * '
+    const bulletPoint = this.completedReportLib.getBulletPoint()
     const tagsToExclude = this.completedReportLib.getExcludedTags()
     const projectsToExclude = this.completedReportLib.getExcludedProjects()
 
