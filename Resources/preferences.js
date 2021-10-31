@@ -1,4 +1,4 @@
-/* global PlugIn Form flattenedTags flattenedProjects Tag Project */
+/* global PlugIn Form flattenedTags flattenedProjects Project */
 (() => {
   const action = new PlugIn.Action(async function (selection, sender) {
     const preferences = this.completedReportLib.loadSyncedPrefs()
@@ -9,7 +9,7 @@
     const includeFolderHeadings = (preferences.read('includeFolderHeadings') !== null) ? preferences.read('includeFolderHeadings') : true
     const includeProjectHeadings = (preferences.read('includeProjectHeadings') !== null) ? preferences.read('includeProjectHeadings') : false
     const bulletPoint = (preferences.readString('bulletPoint') !== null) ? preferences.readString('bulletPoint') : ' * '
-    const tagsToExclude = (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)) : []
+    const tagsToExclude = this.completedReportLib.getExcludedTags()
     const projectsToExclude = (preferences.read('projectsToExclude') !== null) ? preferences.read('projectsToExclude').map(id => Project.byIdentifier(id)) : []
 
     // create and show form

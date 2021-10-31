@@ -90,6 +90,14 @@ If you do create a new action, consider creating a pull request so that it can b
 
 This plug-in bundle also contains several functions in the `completedReportLib` which may be useful in adapting it to fit your own needs or in creating other plugins.
 
+## loadSyncedPrefs ()
+
+This function loads the synced preferences for the 'Completed Task Report' plugin.
+
+## getExcludedTags ()
+
+This function returns an array of excluded tags, as set in the preferences. If no preference has been set, it returns an empty array.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

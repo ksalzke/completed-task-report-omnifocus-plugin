@@ -1,4 +1,4 @@
-/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar Pasteboard */
+/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar Pasteboard Tag */
 (() => {
   const completedReportLib = new PlugIn.Library(new Version('1.0'))
 
@@ -30,13 +30,18 @@
     }
   }
 
+  completedReportLib.getExcludedTags = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)) : []
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library(
       'completedReportConfig'
     )
     const isHidden = (element) => {
-      return config.tagsToExclude().includes(element)
+      return completedReportLib.getExcludedTags().includes(element)
     }
 
     // create an array to store completed tasks
