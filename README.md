@@ -102,6 +102,10 @@ This function returns an array of excluded tags, as set in the preferences. If n
 
 This function returns a string containing the Day One journal name, if it has been set in the preferences. If it has not been set, a form is shown prompting the user for the name of the journal and the entered string is saved in preferences.
 
+## getShowTopLevelOnly ()
+
+This function returns a boolean value reflecting whether the 'Show Top Level Only' preference has been set. If no preference has been set, this defaults to true.
+
 ## getTasksCompletedBetweenDates (startDate, endDate)
 
 This function takes a start time and end time (in the Date format) as input and returns an array of the tasks that have been completed between the two times.

@@ -50,6 +50,11 @@
     return form.values.dayOneJournalName
   }
 
+  completedReportLib.getShowTopLevelOnly = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.read('showTopLevelOnly') !== null) ? preferences.readBoolean('showTopLevelOnly') : true
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library(
@@ -58,6 +63,8 @@
     const isHidden = (element) => {
       return completedReportLib.getExcludedTags().includes(element)
     }
+
+    const showTopLevelOnly = completedReportLib.getShowTopLevelOnly()
 
     // create an array to store completed tasks
     const tasksCompleted = []
@@ -78,7 +85,7 @@
     inbox.apply((item) => {
       if (completedToday(item)) {
         // if has children, only add if all children excluded due to hidden tags
-        if (item.hasChildren && !config.showTopLevelOnly()) {
+        if (item.hasChildren && !showTopLevelOnly) {
           if (
             item.children.every((child) => {
               return child.tags.some(isHidden)
@@ -90,7 +97,7 @@
           tasksCompleted.push(item)
         }
         // skip children if showTopLevelOnly is set to true in config
-        if (config.showTopLevelOnly()) {
+        if (showTopLevelOnly) {
           return ApplyResult.SkipChildren
         }
       }
@@ -102,7 +109,7 @@
         item.task.apply((tsk) => {
           if (completedToday(tsk)) {
             // if has children, only add if all children excluded due to hidden tags
-            if (tsk.hasChildren && !config.showTopLevelOnly()) {
+            if (tsk.hasChildren && !showTopLevelOnly) {
               if (
                 tsk.children.every((child) => {
                   return child.tags.some(isHidden)
@@ -114,7 +121,7 @@
               tasksCompleted.push(tsk)
             }
             // skip children if showTopLevelOnly is set to true in config
-            if (config.showTopLevelOnly()) {
+            if (showTopLevelOnly) {
               return ApplyResult.SkipChildren
             }
           }
