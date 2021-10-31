@@ -15,6 +15,21 @@
     }
   }
 
+  completedReportLib.loadSyncedPrefs = () => {
+    const syncedPrefsPlugin = PlugIn.find('com.KaitlinSalzke.SyncedPrefLibrary')
+
+    if (syncedPrefsPlugin !== null) {
+      const SyncedPref = syncedPrefsPlugin.library('syncedPrefLibrary').SyncedPref
+      return new SyncedPref('com.KaitlinSalzke.CompletedTaskReport')
+    } else {
+      const alert = new Alert(
+        'Synced Preferences Library Required',
+        'For the Completed Task Report plug-in to work correctly, the \'Synced Preferences for OmniFocus\' plugin (https://github.com/ksalzke/synced-preferences-for-omnifocus) is also required and needs to be added to the plug-in folder separately. Either you do not currently have this plugin installed, or it is not installed correctly.'
+      )
+      alert.show()
+    }
+  }
+
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
     const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library(

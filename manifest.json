@@ -16,6 +16,10 @@
     {
       "identifier": "copyToClipboard",
       "image": "arrow.right.doc.on.clipboard"
+    },
+    {
+      "identifier": "preferences",
+      "image": "doc.badge.gearshape.fill"
     }
   ],
   "libraries": [
