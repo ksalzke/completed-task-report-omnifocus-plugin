@@ -1,11 +1,12 @@
 /* global PlugIn */
 (() => {
-  const action = new PlugIn.Action(function (selection, sender) {
+  const action = new PlugIn.Action(async function (selection, sender) {
     const lib = this.completedReportLib
+    const journal = await lib.getDayOneJournalName()
 
     const urlTemplate =
       'dayone://post?entry={{LIST}}&journal=' +
-      encodeURIComponent(lib.getDayOneJournalName())
+      encodeURIComponent(journal)
 
     lib.promptAndRunReport(urlTemplate)
   })
