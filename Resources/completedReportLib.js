@@ -1,4 +1,4 @@
-/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar Pasteboard Tag */
+/* global PlugIn Version inbox Alert ApplyResult library Project Form Calendar Pasteboard Tag Project */
 (() => {
   const completedReportLib = new PlugIn.Library(new Version('1.0'))
 
@@ -35,6 +35,11 @@
     return (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)) : []
   }
 
+  completedReportLib.getExcludedProjects = () => {
+    const preferences = completedReportLib.loadSyncedPrefs()
+    return (preferences.read('projectsToExclude') !== null) ? preferences.read('projectsToExclude').map(id => Project.byIdentifier(id)) : []
+  }
+
   completedReportLib.getDayOneJournalName = async () => {
     const preferences = completedReportLib.loadSyncedPrefs()
     const dayOneJournalName = preferences.readString('dayOneJournalName')
@@ -57,9 +62,6 @@
 
   completedReportLib.getTasksCompletedBetweenDates = (startDate, endDate) => {
     // function to check if a tag is included in 'excluded tags'
-    const config = PlugIn.find('com.KaitlinSalzke.completedTaskReport').library(
-      'completedReportConfig'
-    )
     const isHidden = (element) => {
       return completedReportLib.getExcludedTags().includes(element)
     }
@@ -96,7 +98,7 @@
         } else {
           tasksCompleted.push(item)
         }
-        // skip children if showTopLevelOnly is set to true in config
+        // skip children if showTopLevelOnly is set to true in prefs
         if (showTopLevelOnly) {
           return ApplyResult.SkipChildren
         }
@@ -105,7 +107,7 @@
 
     // get other tasks
     library.apply(function (item) {
-      if (item instanceof Project && !config.projectsToExclude().includes(item) && item.task.hasChildren) {
+      if (item instanceof Project && !completedReportLib.getExcludedProjects().includes(item) && item.task.hasChildren) {
         item.task.apply((tsk) => {
           if (completedToday(tsk)) {
             // if has children, only add if all children excluded due to hidden tags
@@ -120,7 +122,7 @@
             } else { // add if has no children
               tasksCompleted.push(tsk)
             }
-            // skip children if showTopLevelOnly is set to true in config
+            // skip children if showTopLevelOnly is set to true in prefs
             if (showTopLevelOnly) {
               return ApplyResult.SkipChildren
             }
