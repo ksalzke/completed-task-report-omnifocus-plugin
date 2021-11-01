@@ -18,6 +18,8 @@ Refer to the 'issues' in this repo for any other known issues and planned change
 
 # Installation & Set-Up
 
+**Important note: for this plug-in bundle to work correctly, my [Synced Preferences for OmniFocus plugin](https://github.com/ksalzke/synced-preferences-for-omnifocus) is also required and needs to be added to the plug-in folder separately.**
+
 **Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
 
 1. Click on the green `Clone or download` button above to download a `.zip` file of all the files in this GitHub repository.
@@ -30,9 +32,7 @@ For instructions on adding additional actions to run custom reports or different
 
 # Actions
 
-This plug-in bundle contains three actions, `To Day One`, `To Drafts`, and `Copy To Clipboard`.
-
-In all cases, the action:
+This plug-in bundle contains three actions, `To Day One`, `To Drafts`, and `Copy To Clipboard`. In all three cases, the action:
 1. Asks the user to select a day for the report. The options are:
     * Today (default)
     * Yesterday
@@ -44,6 +44,26 @@ In all cases, the action:
     * (If `includeFolderHeadings` is set to true) a bold heading for each top-level folder (where the folder has completed tasks)
     * (If `includeProjectHeadings` is set to true) an italic heading for each project (where the project has completed tasks).
     * A list of completed tasks, grouped under the applicable folder and project headings if shown (Note that the root project task will not be included in the 'task' listing if a project heading is already shown.) If there are multiple tasks (or projects, where project headings are shown) with the same name in a row (for example as the result of a repeating task) the task will only be listed once with (for example) `(x5)` appended.
+
+It also contains a Preferences action.
+
+## Preferences
+
+This action allows the user to set the preferences for the plug-in. These sync between devices using the Synced Preferences plugin linked above. Currently, the available preferences are:
+
+* **Day One Journal Name** The name of the Day One journal for the report to be sent to.
+
+* **Show Top Level Only** If this option is checked, the report will stop at the top-level task that has been completed; e.g if a task or project "Buy groceries" has subtasks "Buy potatoes" and "Buy milk", only "Buy groceries" will be included in the final list. If this is unchecked, the report will include all completed tasks that do not have children, or whose children are all hidden. By default, only the top level is shown.
+
+* **Include Folder Headings** If this option is checked, the report will include folder headings. By default, folder headings are included.
+
+* **Include Project Headings** If this option is checked, the report will include project headings. By default, project headings are not included.
+
+* **Bullet Point** This is a string to be used as the bullet point before each task in the report.
+
+* **Tags To Exclude** Tasks that have these tags will be excluded from the report.
+
+* **Projects To Exclude** Tasks from these projects will be excluded from the report.
 
 ## To Day One
 
