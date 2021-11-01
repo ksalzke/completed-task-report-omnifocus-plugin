@@ -24,9 +24,9 @@ Refer to the 'issues' in this repo for any other known issues and planned change
 
 1. Click on the green `Clone or download` button above to download a `.zip` file of all the files in this GitHub repository.
 2. Unzip the downloaded file.
-3. Open the file located at `Resources/completedReportConfig.js` and make any changes to the configuration needed to reflect your OmniFocus set-up. Further explanations of the options are included within that file as comments.
-4. Rename the entire folder to anything you like, with the extension `.omnifocusjs`
-5. Move the resulting file to your OmniFocus plug-in library folder.
+3. Rename the entire folder to anything you like, with the extension `.omnifocusjs`
+4. Move the resulting file to your OmniFocus plug-in library folder.
+5. Configure your preferences using the `Preferences` action. (Note that to run this action, no tasks can be selected.)
 
 For instructions on adding additional actions to run custom reports or different URL schemes, refer to `Adding New Actions` in the `Actions` section below.
 
