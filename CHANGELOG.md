@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.2.0...v2.3.0) (2021-11-17)
+
+
+### Features
+
+* restructure for easier installation ([ec07f7d](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/commit/ec07f7d13df4e3e2749330482dc595d022fbefbb))
+
+
+
 # [2.2.0](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.1.0...v2.2.0) (2021-10-31)
 
 
