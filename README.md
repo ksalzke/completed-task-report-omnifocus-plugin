@@ -14,7 +14,7 @@ Also bear in mind that if a report is run for a date in the past, tasks will onl
 
 ### Other
 
-Refer to the 'issues' in this repo for any other known issues and planned changes/enhancements.
+Refer to ['issues'](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/issues) for other known issues and planned changes/enhancements.
 
 # Installation & Set-Up
 
@@ -22,11 +22,10 @@ Refer to the 'issues' in this repo for any other known issues and planned change
 
 **Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
 
-1. Click on the green `Clone or download` button above to download a `.zip` file of all the files in this GitHub repository.
+1. Download the [latest release](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/releases/latest).
 2. Unzip the downloaded file.
-3. Rename the entire folder to anything you like, with the extension `.omnifocusjs`
-4. Move the resulting file to your OmniFocus plug-in library folder.
-5. Configure your preferences using the `Preferences` action. (Note that to run this action, no tasks can be selected.)
+3. Move the `.omnifocusjs` file to your OmniFocus plug-in library folder (or open it to install).
+4. Configure your preferences using the `Preferences` action. (Note that to run this action, no tasks can be selected.)
 
 For instructions on adding additional actions to run custom reports or different URL schemes, refer to `Adding New Actions` in the `Actions` section below.
 
