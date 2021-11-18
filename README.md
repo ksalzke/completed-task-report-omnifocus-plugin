@@ -1,6 +1,6 @@
 # About
 
-This is an Omni Automation plug-in bundle for OmniFocus that sends a list of completed tasks to a Day One journal or to Drafts, and also includes functions that allow the user to use their own custom URL schemes. Further details are provided below.
+This is an Omni Automation plug-in bundle for OmniFocus that sends a list of completed tasks for a given period (in Markdown format) to a Day One journal, to Drafts, or to the clipboard. It also includes functions that allow the user to use their own custom URL schemes. Further details are provided below.
 
 _Please note that all scripts on my GitHub account (or shared elsewhere) are works in progress. If you encounter any issues or have any suggestions please let me know--and do please make sure you backup your database before running scripts from a random amateur on the internet!)_
 
@@ -28,6 +28,12 @@ Refer to ['issues'](https://github.com/ksalzke/completed-task-report-omnifocus-p
 4. Configure your preferences using the `Preferences` action. (Note that to run this action, no tasks can be selected.)
 
 For instructions on adding additional actions to run custom reports or different URL schemes, refer to `Adding New Actions` in the `Actions` section below.
+
+# The Report
+
+By default, a report similar to the below is produced in Markdown and sent to the desired destination.
+
+<img width="369" alt="Sample Report" src="https://user-images.githubusercontent.com/16893787/142302086-c043b19e-a0c6-4823-a356-276bd6ce6a5b.png">
 
 # Actions
 
