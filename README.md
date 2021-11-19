@@ -2,6 +2,8 @@
 
 This is an Omni Automation plug-in bundle for OmniFocus that sends a list of completed tasks for a given period (in Markdown format) to a Day One journal, to Drafts, or to the clipboard. It also includes functions that allow the user to use their own custom URL schemes. Further details are provided below.
 
+You may find the 'Mark Completed Yesterday' script included in my [Miscellaneous OmniFocus Plugins](https://github.com/ksalzke/miscellaneous-omnifocus-plugins) to be useful in conjunction with this plugin.
+
 _Please note that all scripts on my GitHub account (or shared elsewhere) are works in progress. If you encounter any issues or have any suggestions please let me know--and do please make sure you backup your database before running scripts from a random amateur on the internet!)_
 
 ## Known issues 
