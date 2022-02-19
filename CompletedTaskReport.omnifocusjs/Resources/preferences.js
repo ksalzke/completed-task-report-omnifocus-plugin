@@ -34,8 +34,7 @@
   })
 
   action.validate = function (selection, sender) {
-    // only show when nothing is selected
-    return selection.tasks.length === 0 && selection.projects.length === 0
+    return true
   }
 
   return action
