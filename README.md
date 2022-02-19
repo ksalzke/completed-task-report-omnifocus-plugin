@@ -2,7 +2,7 @@
 
 This is an Omni Automation plug-in bundle for OmniFocus that sends a list of completed tasks for a given period (in Markdown format) to a Day One journal, to Drafts, or to the clipboard. It also includes functions that allow the user to use their own custom URL schemes. Further details are provided below.
 
-You may find the 'Mark Completed Yesterday' script included in my [Miscellaneous OmniFocus Plugins](https://github.com/ksalzke/miscellaneous-omnifocus-plugins) to be useful in conjunction with this plugin.
+You may find the 'Mark Completed Yesterday' script included in my [Miscellaneous OmniFocus Plug-ins](https://github.com/ksalzke/miscellaneous-omnifocus-plugins) to be useful in conjunction with this plug-in.
 
 _Please note that all scripts on my GitHub account (or shared elsewhere) are works in progress. If you encounter any issues or have any suggestions please let me know--and do please make sure you backup your database before running scripts from a random amateur on the internet!)_
 
@@ -10,7 +10,7 @@ _Please note that all scripts on my GitHub account (or shared elsewhere) are wor
 
 ### Running a report for a day other than today
 
-Although this plugin will allow a report to be run for any period of time, the Day One URL scheme does not allow for a day to be specified (nor does Drafts). Therefore, the report will be added ton the current date at the current time. This can then be edited in Day One if desired.
+Although this plug-in will allow a report to be run for any period of time, the Day One URL scheme does not allow for a day to be specified (nor does Drafts). Therefore, the report will be added ton the current date at the current time. This can then be edited in Day One if desired.
 
 Also bear in mind that if a report is run for a date in the past, tasks will only be included in the report if they are still in the database (e.g. if tasks from that date have been archived they will not appear in the report).
 
@@ -20,7 +20,7 @@ Refer to ['issues'](https://github.com/ksalzke/completed-task-report-omnifocus-p
 
 # Installation & Set-Up
 
-**Important note: for this plug-in bundle to work correctly, my [Synced Preferences for OmniFocus plugin](https://github.com/ksalzke/synced-preferences-for-omnifocus) is also required and needs to be added to the plug-in folder separately.**
+**Important note: for this plug-in bundle to work correctly, my [Synced Preferences for OmniFocus plug-in](https://github.com/ksalzke/synced-preferences-for-omnifocus) is also required and needs to be added to the plug-in folder separately.**
 
 **Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
 
@@ -67,7 +67,7 @@ It also contains a Preferences action.
 
 ## Preferences
 
-This action allows the user to set the preferences for the plug-in. These sync between devices using the Synced Preferences plugin linked above. Currently, the available preferences are:
+This action allows the user to set the preferences for the plug-in. These sync between devices using the Synced Preferences plug-in linked above. Currently, the available preferences are:
 
 * **Day One Journal Name** The name of the Day One journal for the report to be sent to.
 
@@ -126,11 +126,11 @@ If you do create a new action, consider creating a pull request so that it can b
 
 # Functions
 
-This plug-in bundle also contains several functions in the `completedReportLib` which may be useful in adapting it to fit your own needs or in creating other plugins.
+This plug-in bundle also contains several functions in the `completedReportLib` which may be useful in adapting it to fit your own needs or in creating other plug-ins.
 
 ## loadSyncedPrefs ()
 
-This function loads the synced preferences for the 'Completed Task Report' plugin.
+This function loads the synced preferences for the 'Completed Task Report' plug-in.
 
 ## getExcludedTags ()
 
