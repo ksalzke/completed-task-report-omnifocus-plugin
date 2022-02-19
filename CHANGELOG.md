@@ -1,3 +1,13 @@
+# [2.4.0](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.3.0...v2.4.0) (2022-02-19)
+
+
+### Features
+
+* :lipstick: rename 'Preferences' to 'Preferences: Completed Task Report' ([d925cc2](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/commit/d925cc2092189f37a84ca35b968c14a694b97df7))
+* :sparkles: update validation so that actions are always available ([e917293](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/commit/e9172934d1bfd47f0ab08832a9a579957e216563))
+
+
+
 # [2.3.0](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.2.0...v2.3.0) (2021-11-17)
 
 
