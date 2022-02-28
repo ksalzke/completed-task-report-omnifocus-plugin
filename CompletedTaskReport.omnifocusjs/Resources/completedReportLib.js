@@ -32,12 +32,12 @@
 
   completedReportLib.getExcludedTags = () => {
     const preferences = completedReportLib.loadSyncedPrefs()
-    return (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)) : []
+    return (preferences.read('tagsToExclude') !== null) ? preferences.read('tagsToExclude').map(id => Tag.byIdentifier(id)).filter(tag => tag !== null) : []
   }
 
   completedReportLib.getExcludedProjects = () => {
     const preferences = completedReportLib.loadSyncedPrefs()
-    return (preferences.read('projectsToExclude') !== null) ? preferences.read('projectsToExclude').map(id => Project.byIdentifier(id)) : []
+    return (preferences.read('projectsToExclude') !== null) ? preferences.read('projectsToExclude').map(id => Project.byIdentifier(id)).map(proj => proj !== null) : []
   }
 
   completedReportLib.getDayOneJournalName = async () => {
