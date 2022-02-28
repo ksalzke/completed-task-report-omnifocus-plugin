@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.4.0...v2.4.1) (2022-02-28)
+
+
+### Bug Fixes
+
+* :bug: fix handling of deleted projects/tags ([ee0c3b9](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/commit/ee0c3b9b7f85c18fd6ec9cd73daa9c8bcabb0312))
+
+
+
 # [2.4.0](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/compare/v2.3.0...v2.4.0) (2022-02-19)
 
 
