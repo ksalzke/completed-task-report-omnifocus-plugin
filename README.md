@@ -18,16 +18,26 @@ Also bear in mind that if a report is run for a date in the past, tasks will onl
 
 Refer to ['issues'](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/issues) for other known issues and planned changes/enhancements.
 
-# Installation & Set-Up
+## Installation
 
-**Important note: for this plug-in bundle to work correctly, my [Synced Preferences for OmniFocus plug-in](https://github.com/ksalzke/synced-preferences-for-omnifocus) is also required and needs to be added to the plug-in folder separately.**
+[![Install in OmniFocus](https://img.shields.io/badge/OmniFocus-Install-5E5CE6?style=flat-square)](https://ksalzke.github.io/omnifocus-plugin-installer/?repo=completed-task-report-omnifocus-plugin)
 
-**Important note: for this plug-in bundle to work correctly, my [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) is currently also required and needs to be added to the your OmniFocus plug-in folder separately.**
+Select **Install** above, then follow the prompts.
 
-1. Download the [latest release](https://github.com/ksalzke/completed-task-report-omnifocus-plugin/releases/latest).
-2. Unzip the downloaded file.
-3. Move the `.omnifocusjs` file to your OmniFocus plug-in library folder (or open it to install).
-4. Configure your preferences using the `Preferences` action. (Note that to run this action, no tasks can be selected.)
+
+## Prerequisites 
+
+This plug-in requires:
+* [Synced Preferences for OmniFocus](https://github.com/ksalzke/synced-preferences-for-omnifocus)
+* [Function Library for OmniFocus](https://github.com/ksalzke/function-library-for-omnifocus) 
+
+Install these separately before using this plug-in.
+
+## Setup
+
+After installation, run the **Preferences** action to configure the plug-in.
+
+The **Preferences** action is available only when no tasks are selected.
 
 For instructions on adding additional actions to run custom reports or different URL schemes, refer to `Adding New Actions` in the `Actions` section below.
 
